@@ -23,4 +23,4 @@ What have we done?
 - Created a local Kubernetes cluster.
 - Started an OCI-compliant image registry on your host.
 - Stored a Helm chart as an OCI image on the image registry.
-- Instructed Helm to deploy a chart stored on the image registry.
+- Instructed Helm to deploy a chart stored in the image registry.
