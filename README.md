@@ -1,6 +1,6 @@
 # OCI Registry Helm Charts!
 
-This project provides a demo of using OCI-compliant registries as storage for Helm charts. It will create a Kind Kubernetes cluster, start a container registry, store a Nginx Helm chart there and use it for a deployment of Nginx to the Kind Kubernetes cluster.
+This project provides a demo of using OCI-compliant registries as storage for Helm charts.
 
 Requires:
 
