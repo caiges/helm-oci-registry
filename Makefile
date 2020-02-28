@@ -3,15 +3,15 @@ SHELL=/bin/bash
 
 image=registry
 
-clean: down
+clean:
 	rm -rf certs
 	kind delete cluster
-	docker rm -f registry || true
+	docker rm -f registry kube_proxy || true
 
-clustercreate:
+create_cluster:
 	kind create cluster
 
-registry: htpasswd
+registry: htpasswd cacerts certs
 	docker network create --attachable registry || true
 	docker run -d -p 443:443 --restart=always --name registry \
 	--network host \
@@ -56,7 +56,7 @@ demo_chart:
 	docker run --rm -it -v ${HOME}/.kube:/root/.kube -v ${PWD}:/apps --entrypoint "" -e HELM_EXPERIMENTAL_OCI=1 --network host --add-host registry:127.0.0.1 helmer ./demo.sh
 
 demo_proxy:
-	docker run --rm -it -v ${HOME}/.kube:/root/.kube -v ${PWD}:/apps --entrypoint "" -e HELM_EXPERIMENTAL_OCI=1 --network host  helmer kubectl port-forward deployments/nginxtacos 9000:8080
+	docker run --rm --name kube_proxy -it -v ${HOME}/.kube:/root/.kube -v ${PWD}:/apps --entrypoint "" -e HELM_EXPERIMENTAL_OCI=1 --network host  helmer kubectl port-forward deployments/nginxtacos 9000:8080
 
 demo_nginx:
 	xdg-open http://localhost:9000
