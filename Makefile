@@ -60,7 +60,7 @@ demo_chart: ## Push Helm chart to registry, export and deploy it.
 	docker run --rm -it -v ${HOME}/.kube:/root/.kube -v ${PWD}:/apps --entrypoint "" -e HELM_EXPERIMENTAL_OCI=1 --network host --add-host registry:127.0.0.1 helmer ./demo.sh
 
 demo_proxy: ## Start proxy to deployed Chart in K8s.
-	docker run --rm --name kube_proxy -it -v ${HOME}/.kube:/root/.kube -v ${PWD}:/apps --entrypoint "" -e HELM_EXPERIMENTAL_OCI=1 --network host  helmer kubectl port-forward deployments/nginxtacos 9000:8080
+	docker run --rm --name kube_proxy -it -v ${HOME}/.kube:/root/.kube -v ${PWD}:/apps --entrypoint "" -e HELM_EXPERIMENTAL_OCI=1 --network host helmer kubectl port-forward deployments/nginxtacos 9000:8080
 
 demo_nginx: ## Open webpage hosted by the deployed Nginx Helm chart.
 	xdg-open http://localhost:9000

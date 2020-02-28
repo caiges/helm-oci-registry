@@ -4,10 +4,12 @@ This project provides a demo of using OCI-compliant registries as storage for He
 
 Requires:
 
+- Bash
 - Docker
 - [Kind](https://kind.sigs.k8s.io/)
 - Make
 - OpenSSL
+- xdg-open (used to open the webpage for the deployed chart in the `make demo_nginx` task -- `http://localhost:9000`)
 
 # Getting Started
 
